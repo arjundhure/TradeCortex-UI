@@ -1,16 +1,60 @@
-# React + Vite
+# TradeCortex UI 📊
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React frontend for TradeCortex — AI-powered stock analysis platform.
 
-Currently, two official plugins are available:
+## Live Demo
+Coming soon
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Backend Repo
+https://github.com/arjundhure/TradeCortexFinal
 
-## React Compiler
+## Features
+- 🔐 JWT authentication with auto token refresh
+- 📊 Interactive stock charts with ML prediction overlay
+- ⚡ Real-time price updates via WebSockets
+- 📈 Side-by-side stock comparison
+- 🎯 EVS gauge visualization
+- 📰 News sentiment display
+- 🤖 AI Buy/Hold/Sell recommendations
+- 📋 Analysis history table
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
+- React + Vite
+- React Router v6
+- TanStack React Query (server state + caching)
+- Zustand (auth state management)
+- Recharts (interactive charts)
+- Axios (JWT interceptors + auto refresh)
+- Lucide React (icons)
+- WebSockets (live price feeds)
 
-## Expanding the Oxlint configuration
+## Pages
+| Page | Description |
+|------|-------------|
+| Login/Signup | JWT auth with investor type selection |
+| Dashboard | Welcome screen + quick actions + recent analyses |
+| Analyze | Full AI analysis — chart, EVS gauge, sentiment, recommendation |
+| Compare | Side-by-side comparison of 2 stocks |
+| History | Past analyses table from PostgreSQL |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Setup
+```bash
+npm install
+npm run dev
+```
+
+Make sure the backend is running at `http://localhost:8000` first.
+
+## Architecture
+React Query (server cache)
+↓
+Axios (JWT interceptor) → FastAPI backend
+↓
+Zustand (auth state) → localStorage (tokens)
+↓
+WebSocket → live price updates every 30s
+## Key Design Decisions
+- **React Query** handles all server state — automatic caching, background refetch, loading/error states
+- **Zustand** manages auth — lighter than Redux, no boilerplate
+- **Axios interceptors** auto-attach JWT and transparently refresh expired tokens
+- **Vite proxy** forwards `/api` calls to backend — no CORS issues in development
